@@ -8,3 +8,11 @@ out all such words.
 I've trimmed the list of words less than 4 characters, and sorted them in
 order. I also wrote a litle thing that looks for "one-handed" words because
 I noticed that sweater is pleasant to type as well.
+
+## usage
+
+Run pleasant.py under python3. It takes dictionaries as arguments.
+
+```
+python3 pleasant.py /usr/share/dict/words
+```
