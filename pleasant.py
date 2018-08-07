@@ -1,4 +1,5 @@
 from typing import List
+from typing.io import TextIO
 
 LEFTHAND = set(
     ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b']
@@ -6,9 +7,9 @@ LEFTHAND = set(
 RIGHTHAND = set(['y', 'u', 'i', 'o', 'p', 'h', 'j', 'k', 'l', 'n', 'm'])
 
 
-def left_right() -> List[str]:
+def left_right(dictionary: TextIO) -> List[str]:
     works = []
-    for i in open('/usr/share/dict/words'):
+    for i in dictionary:
         word = i.strip()
         if word[0] in LEFTHAND:
             hand = LEFTHAND
@@ -29,9 +30,9 @@ def left_right() -> List[str]:
     return works
 
 
-def one_hand() -> List[str]:
+def one_hand(dictionary: TextIO) -> List[str]:
     works = []
-    for i in open('/usr/share/dict/words'):
+    for i in dictionary:
         word = i.strip()
         if word[0] in LEFTHAND:
             hand = LEFTHAND
@@ -55,5 +56,7 @@ def print_words(words: List[str]) -> None:
 
 
 if __name__ == '__main__':
-    print_words(left_right())
-    print_words(one_hand())
+    dictionary = open('/usr/share/dict/words')
+    print_words(left_right(dictionary))
+    dictionary = open('/usr/share/dict/words')
+    print_words(one_hand(dictionary))
