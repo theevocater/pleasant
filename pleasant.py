@@ -1,3 +1,4 @@
+import sys
 from typing import List
 from typing.io import TextIO
 
@@ -56,7 +57,6 @@ def print_words(words: List[str]) -> None:
 
 
 if __name__ == '__main__':
-    dictionary = open('/usr/share/dict/words')
-    print_words(left_right(dictionary))
-    dictionary = open('/usr/share/dict/words')
-    print_words(one_hand(dictionary))
+    for dictionary in sys.argv[1:]:
+        print_words(left_right(open(dictionary)))
+        print_words(one_hand(open(dictionary)))
