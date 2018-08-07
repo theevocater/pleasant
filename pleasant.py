@@ -1,7 +1,8 @@
 from typing import List
 
-LEFTHAND = set(['q', 'w', 'e', 'r', 't', 'a', 's',
-                'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'])
+LEFTHAND = set(
+    ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b']
+)
 RIGHTHAND = set(['y', 'u', 'i', 'o', 'p', 'h', 'j', 'k', 'l', 'n', 'm'])
 
 
@@ -28,7 +29,7 @@ def left_right() -> List[str]:
     return works
 
 
-def one_hand() -> str:
+def one_hand() -> List[str]:
     works = []
     for i in open('/usr/share/dict/words'):
         word = i.strip()
