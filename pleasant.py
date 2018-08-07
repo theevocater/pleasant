@@ -57,6 +57,9 @@ def print_words(words: List[str]) -> None:
 
 
 if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        print(f'usage: {sys.argv[0]} /path/to/dict')
+        sys.exit(-1)
     for dictionary in sys.argv[1:]:
         print_words(left_right(open(dictionary)))
         print_words(one_hand(open(dictionary)))
