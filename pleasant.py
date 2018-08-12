@@ -2,49 +2,33 @@ import sys
 from typing import List
 from typing.io import TextIO
 
-LEFTHAND = set(
-    ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b']
-)
-RIGHTHAND = set(['y', 'u', 'i', 'o', 'p', 'h', 'j', 'k', 'l', 'n', 'm'])
+LEFTHAND = frozenset('12345qwertasdfgzxcvb')
 
 
 def left_right(dictionary: TextIO) -> List[str]:
     works = []
-    for i in dictionary:
-        word = i.strip()
-        if word[0] in LEFTHAND:
-            hand = LEFTHAND
-        else:
-            hand = RIGHTHAND
-        found = True
-        for letter in word:
-            if letter in hand:
-                if hand == LEFTHAND:
-                    hand = RIGHTHAND
-                else:
-                    hand = LEFTHAND
-            else:
-                found = False
+    for word in dictionary:
+        word = word.lower().strip()
+        left = word[0] in LEFTHAND
+        for c in word[1:]:
+            if (c in LEFTHAND) == left:
                 break
-        if found:
+            else:
+                left = not left
+        else:
             works.append(word)
     return works
 
 
 def one_hand(dictionary: TextIO) -> List[str]:
     works = []
-    for i in dictionary:
-        word = i.strip()
-        if word[0] in LEFTHAND:
-            hand = LEFTHAND
-        else:
-            hand = RIGHTHAND
-        found = True
-        for letter in word:
-            if letter not in hand:
-                found = False
+    for word in dictionary:
+        word = word.lower().strip()
+        left = word[0] in LEFTHAND
+        for c in word[1:]:
+            if (c in LEFTHAND) != left:
                 break
-        if found:
+        else:
             works.append(word)
     return works
 
